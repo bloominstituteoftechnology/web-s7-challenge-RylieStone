@@ -15,16 +15,19 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] sum('10', '3') // returns 13
   */
   test("Sum returns proper error", () => {
-    expect(sum()).toThrowError('pass valid numbers')
+    expect(() => sum()).toThrow('pass valid numbers')
+    expect(() => sum(2, "foo")).toThrow('pass valid numbers')
+    expect(() => sum("five", "seven")).toThrow('pass valid numbers')
+    expect(() => sum("five", 7)).toThrow('pass valid numbers')
   })
   test("sum works as intended", () => {
     expect(sum(1, 3)).toBe(4)
-    expect(sum(2, 5)).toBe(7)
-    expect(sum(10, 5)).toBe(15)
+    expect(sum(2, '5')).toBe(7)
+    expect(sum('10', 5)).toBe(15)
   })
   /*
   👉 TASK 2 - Integration Testing of HelloWorld component at the bottom of this module
-
+  
   Test the <HelloWorld /> component found below...
     - using `screen.queryByText` to capture nodes
     - using `toBeInTheDocument` to assert their existence in the DOM
@@ -39,6 +42,17 @@ describe('Sprint 7 Challenge Learner Tests', () => {
   // test('you can comment out this test', () => {
   //   expect(true).toBe(false)
   // })
+  test("links render to the page", () => {
+    render(<HelloWorld/>)
+    expect("home").toBeVisible
+    expect("about").toBeVisible
+    expect("blog").toBeVisible
+  })
+  test("text render to the page", () => {
+    render(<HelloWorld />)
+    expect(screen.queryByText("The Truth")).toBeVisible()
+    expect(screen.queryByText("JavaScript is pretty awesome")).toBeVisible()
+    expect(screen.queryByText("JavaScript is pretty", {exact: false})).toBeVisible()
 })
 
 function sum(a, b) {
@@ -68,3 +82,4 @@ function HelloWorld() {
     </div>
   )
 }
+})
