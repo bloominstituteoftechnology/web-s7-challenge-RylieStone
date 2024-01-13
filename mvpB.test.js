@@ -14,7 +14,14 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [4] sum('1', 2) // returns 3
     [5] sum('10', '3') // returns 13
   */
-
+  test("Sum returns proper error", () => {
+    expect(sum()).toThrowError('pass valid numbers')
+  })
+  test("sum works as intended", () => {
+    expect(sum(1, 3)).toBe(4)
+    expect(sum(2, 5)).toBe(7)
+    expect(sum(10, 5)).toBe(15)
+  })
   /*
   👉 TASK 2 - Integration Testing of HelloWorld component at the bottom of this module
 
@@ -29,9 +36,9 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] renders a text that reads "JavaScript is pretty awesome"
     [6] renders a text that includes "javaScript is pretty" (use exact = false)
   */
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
-  })
+  // test('you can comment out this test', () => {
+  //   expect(true).toBe(false)
+  // })
 })
 
 function sum(a, b) {
